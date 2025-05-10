@@ -22,6 +22,23 @@
     .faq-item h3 { 
       margin: 0 0 5px; 
     }
+    /* Floating Icon Button style */
+    #chat-toggle-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      font-size: 28px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      z-index: 1001;
+      transition: opacity 0.3s ease;
+    }
   </style>
 </head>
 <body>
@@ -63,7 +80,36 @@
     </div>
   </section>
 
-  <!-- Embed Code: Make sure this script reference is correct-->
-  <script src="https://serine-ai.vercel.app/widget.js" data-client-id="CLIENT_ABC123" data-website-url="https://html-test-page-wheat.vercel.app"></script>
+  <!-- Floating Icon Button -->
+  <button id="chat-toggle-btn">&#128172;</button>
+  
+  <!-- Include the widget.js script using the correct URL (without any /public/ prefix) -->
+  <script src="https://serine-ai.vercel.app/widget.js" defer
+          data-siteid="CLIENT_ABC123"
+          data-border-color="#00AAFF"
+          data-website-url="https://html-test-page-wheat.vercel.app"></script>
+
+  <script>
+    // When the HTML is fully loaded, set up the floating button events.
+    document.addEventListener("DOMContentLoaded", function () {
+      const toggleBtn = document.getElementById("chat-toggle-btn");
+      // When you click the floating icon, try to call window.showSerineWidget.
+      toggleBtn.addEventListener("click", function () {
+        if (typeof window.showSerineWidget === 'function') {
+          window.showSerineWidget();
+          // Fade out the icon after clicking.
+          toggleBtn.style.opacity = "0";
+          setTimeout(() => { toggleBtn.style.display = 'none'; }, 300);
+        } else {
+          console.error("window.showSerineWidget is not defined.");
+        }
+      });
+      // When the widget is closed, make the icon visible again.
+      window.onWidgetClose = function () {
+        toggleBtn.style.display = 'block';
+        setTimeout(() => { toggleBtn.style.opacity = "1"; }, 10);
+      };
+    });
+  </script>
 </body>
 </html>
