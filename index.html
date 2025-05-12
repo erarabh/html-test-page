@@ -2,43 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Test Product Page for Serine AI Chat Widget</title>
+  <title>Test Product Page for Serine AI Chatbot</title>
   <style>
-    body { 
-      font-family: Arial, Helvetica, sans-serif; 
-      line-height: 1.6; 
-      padding: 20px; 
-    }
-    header { 
-      border-bottom: 1px solid #ccc; 
-      margin-bottom: 20px; 
-    }
-    .section { 
-      margin-bottom: 30px; 
-    }
-    .faq-item { 
-      margin-bottom: 15px; 
-    }
-    .faq-item h3 { 
-      margin: 0 0 5px; 
-    }
-    /* Floating Icon Button style */
-    #chat-toggle-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 60px;
-      height: 60px;
-      background-color: #007BFF;
-      color: #fff;
-      border: none;
-      border-radius: 50%;
-      font-size: 28px;
-      cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      z-index: 1001;
-      transition: opacity 0.3s ease;
-    }
+    body { font-family: Arial, Helvetica, sans-serif; line-height: 1.6; padding: 20px; }
+    header { border-bottom: 1px solid #ccc; margin-bottom: 20px; }
+    .section { margin-bottom: 30px; }
+    .faq-item { margin-bottom: 15px; }
+    .faq-item h3 { margin: 0 0 5px; }
   </style>
 </head>
 <body>
@@ -63,7 +33,7 @@
     </p>
   </section>
 
-  <!-- Frequently Asked Questions (FAQ) Section -->
+  <!-- FAQ Section -->
   <section id="faq" class="section">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-item">
@@ -80,33 +50,9 @@
     </div>
   </section>
 
-  <!-- Floating Icon Button -->
-  <button id="chat-toggle-btn">&#128172;</button>
-  
-  <!-- Include the widget.js script using the correct URL (without any /public/ prefix) -->
+  <!-- This is where you paste the embed code generated from your Dashboard -->
   <script src="https://serine-ai.vercel.app/widget.js" data-siteid="CLIENT_ABC123" data-border-color="#00AAFF" data-website-url="https://html-test-page-wheat.vercel.app/"></script>
+ 
 
-  <script>
-    // When the HTML is fully loaded, set up the floating button events.
-    document.addEventListener("DOMContentLoaded", function () {
-      const toggleBtn = document.getElementById("chat-toggle-btn");
-      // When you click the floating icon, try to call window.showSerineWidget.
-      toggleBtn.addEventListener("click", function () {
-        if (typeof window.showSerineWidget === 'function') {
-          window.showSerineWidget();
-          // Fade out the icon after clicking.
-          toggleBtn.style.opacity = "0";
-          setTimeout(() => { toggleBtn.style.display = 'none'; }, 300);
-        } else {
-          console.error("window.showSerineWidget is not defined.");
-        }
-      });
-      // When the widget is closed, make the icon visible again.
-      window.onWidgetClose = function () {
-        toggleBtn.style.display = 'block';
-        setTimeout(() => { toggleBtn.style.opacity = "1"; }, 10);
-      };
-    });
-  </script>
 </body>
 </html>
